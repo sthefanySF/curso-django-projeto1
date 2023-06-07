@@ -3,11 +3,10 @@ from receita.views import home
 from . import views
 
 
-
+app_name = 'receitas'
 
 urlpatterns = [
-    path('', home),
-    path('', views.home),
-    path('receitas/<int:id>/', views.receita), #esse int antes do ir é para só ser permitido passar numero na url
+    path('', views.home, name="home"),
+    path('receitas/<int:id>/', views.receita, name="receita"),
 
 ]

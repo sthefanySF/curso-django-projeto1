@@ -10,4 +10,5 @@ def home(request):
 def receita(request, id):
     return render(request,'receita/pages/receita-view.html', context={
         'receita' : make_recipe(),
+        'is_datail_page': True,
     })

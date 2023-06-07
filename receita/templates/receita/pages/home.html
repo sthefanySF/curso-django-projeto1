@@ -3,12 +3,10 @@
 {% block title %}Home | {% endblock title %}
 
 {% block content %}
-<div class="main-content-list container">
-    <div class="recipe recipe-list-item">
-        {% include 'receita/partials/recipe.html' %}
-    </div>
-    <div class="recipe recipe-list-item">
-        {% include 'receita/partials/recipe.html' %}
-    </div>
+<div class="main-content main-content-list container">
+    {% for receita in receitas %}
+        {% include 'receita/partials/recipe.html' %} #incluindo o arquivo recipe.html aqui
+    {% endfor %}
+</div>
 </div>
 {% endblock content %}

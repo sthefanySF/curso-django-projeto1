@@ -9,6 +9,13 @@ def home(request):
         'receitas' : receita,
     })
 
+def category(request, category_id):
+    receita = Recipe.objects.filter(category__id=category_id).order_by('-id') 
+    return render(request,'receita/pages/home.html', context={
+        'receitas' : receita,
+    })
+
+
 def receita(request, id):
     return render(request,'receita/pages/receita-view.html', context={
         'receita' : make_recipe(),

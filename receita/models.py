@@ -22,7 +22,7 @@ class Recipe(models.Model): #tabela de receitas
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to='receita/covers/%Y/%m/%d/')
+    cover = models.ImageField(upload_to='receita/covers/%Y/%m/%d/', blank=True, default='')
     #relação de tabelas
 
     category = models.ForeignKey(

@@ -1,10 +1,12 @@
 <div class="recipe recipe-list-item">
-    <div class="recipe-cover">
-        <a href="{% url 'receitas:receita' receita.id %}">
-        <img src="{{ receita.cover.url }}" alt="Temporário">
-        </a>
+    {% if receita.cover %}   {% comment %} se tiver imagem no cover mostrar isso abaixo {% endcomment %}
+        <div class="recipe-cover">
+            <a href="{% url 'receitas:receita' receita.id %}">
+            <img src="{{ receita.cover.url }}" alt="Temporário">
+            </a>
 
-    </div>
+        </div>
+    {% endif %}
 
     <div class="recipe-title-container">
         <h2 class="recipe-title">
@@ -17,8 +19,15 @@
     <div class="recipe-author">
         <span class="recipe-author-item">
             <i class="fas fa-user"></i>
-            {{ receita.author.first_name }} {{ receita.author.last_name }}
+
+            {% if receita.author.first_name %}
+
+                {{ receita.author.first_name }} {{ receita.author.last_name }}
+            {% else %}
+                {{ receita.author.username }}
+            {% endif %}
         </span>
+
         <span class="recipe-author-item">
             <i class="fas fa-calendar-alt"></i>
             {{ receita.created_at|date:"d/m/Y" }} às {{ receita.created_at|date:"H:i" }}

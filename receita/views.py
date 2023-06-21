@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from Utils.receitas.factory import make_recipe
+from receita.models import Recipe
 
 def home(request):
+    receita = Recipe.objects.all().order_by('-id') #buscar todas as receitas e ordena-las
     return render(request,'receita/pages/home.html', context={
-        'receitas' : [make_recipe() for _ in range(10)],
+        'receitas' : receita,
     })
 
 def receita(request, id):

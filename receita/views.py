@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,  get_object_or_404
 from django.http import HttpResponse
 from Utils.receitas.factory import make_recipe
 from receita.models import Recipe
@@ -20,8 +20,13 @@ def category(request, category_id):
     })
 
 
+
+
 def receita(request, id):
-    return render(request,'receita/pages/receita-view.html', context={
-        'receita' : make_recipe(),
-        'is_datail_page': True,
-    })
+    receita = get_object_or_404(Recipe, id=id)
+    context = {
+        'receita': receita,
+        'is_detail_page': True,
+    }
+    return render(request, 'receita/pages/receita-view.html', context)
+
